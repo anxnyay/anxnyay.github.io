@@ -1,9 +1,9 @@
-let btnRock, btnPaper, btnScissors, btnGame, btn3Game, btn5Game ;
+let btnRock, btnPaper, btnScissors, btnGame, btn3Game, btn5Game, btnReplay, btnExit;
 
-let RndNumber ;
+let RndNumber;
 
 // variable for text
-let notes = "welcome to rps, choose an option listed below"
+let notes = "Welcome to My game , please choose  your option."
 let result = ""
 
 function setup()
@@ -12,50 +12,52 @@ function setup()
  
   RndNumber = round (random(0.5,3.5))
  
-  btnGame = createButton("single game")
-  btnGame.position (75, 190)
+  btnGame = createButton("Single Game")
+  btnGame.position (75, 290)
   btnGame.style("width" , "100px")
   btnGame.mousePressed(showRPS)
   //btnGame.hide()
    
-  btn3Game = createButton("best of three")
-  btn3Game.position (250, 190)
+  btn3Game = createButton("Best Of Three")
+  btn3Game.position (250, 290)
   btn3Game.style("width" , "100px")
+  btn3Game.mousePressed(showRPS)
   //btn3Game.hide()
  
-  btn5Game = createButton("best of five")
-  btn5Game.position (425, 190)
+  btn5Game = createButton("Best of Five")
+  btn5Game.position (425, 290)
   btn5Game.style("width" , "100px")
+  btn5Game.mousePressed(showRPS)
   //btn5Game.hide()
  
-  btnRock = createButton("rock")
-  btnRock.position (75, 190)
+  btnRock = createButton("Rock")
+  btnRock.position (75, 290)
   btnRock.style("width" , "100px")
   btnRock.mousePressed(CompRock)
   btnRock.hide()
    
-  btnPaper = createButton("paper")
-  btnPaper.position (250, 190)
+  btnPaper = createButton("Paper")
+  btnPaper.position (250, 290)
   btnPaper.style("width" , "100px")
   btnPaper.mousePressed(CompPaper)
   btnPaper.hide()
  
-  btnScissors = createButton("scissors")
-  btnScissors.position (425, 190)
+  btnScissors = createButton("Scissors")
+  btnScissors.position (425, 290)
   btnScissors.style("width" , "100px")
   btnScissors.mousePressed(CompScissors)
   btnScissors.hide()
   
   btnReplay = createButton("New Game")
-  btnReplay.position (200, 400)
+  btnReplay.position (75, 190)
   btnReplay.style("width" , "100px")
   btnReplay.mousePressed(showRPS)
   btnReplay.hide()
   
-  btnExit=createButton("Exit")
-  btnExit.position (350, 400)
+  btnExit = createButton("Exit")
+  btnExit.position (425, 190)
   btnExit.style("width" , "100px")
-  btnExit.mousePressed(CompScissors)
+  btnExit.mousePressed(showRPS)
   btnExit.hide()
  
 }
@@ -66,25 +68,34 @@ function draw()
   background(220);
   //  increase the size of the text
  
-  text("ROCK, PAPER, SCISSORS", 225, 50)
+  text("My Game Rock Paper Scissors", 220, 50)
  
-  text( notes, 180, 100);
+  text( notes, 180, 120);
  
   text (result , 150, 300)
  
-  text (RndNumber , 300, 250)
+  //text (RndNumber , 300, 300)
 }
 
 
 function showRPS()
 {
-  notes = "rock, paper or scissors?"
+  notes = "please choose one out of Rock, paper, scissors"
   btnGame.hide()
   btn3Game.hide()
   btn5Game.hide()
+  
   btnScissors.show()
   btnPaper.show()
   btnRock.show()
+  
+  btnExit.hide()
+  btnReplay.hide()
+  
+  result =""
+  
+  RndNumber = round (random(0.5,3.5))
+  
 }
 
 function CompRock()
@@ -92,18 +103,18 @@ function CompRock()
 
    if(RndNumber == 3)
         {
-         result = 'congrats, you won!'
+         result = 'You Won !!'
         }
     else if (RndNumber == 2)
         {
-          result = 'haha, you lost, better luck next time!'
+          result = 'Computer Won !!'
         }
     else
         {
-          result = "yikes, its a tie, try again maybe?"
+          result = "It's Tie"
         }
- 
-hideRPS();
+  
+hideRPS()
 }
 
 function CompPaper()
@@ -111,37 +122,41 @@ function CompPaper()
 
    if(RndNumber == 1)
         {
-         result = 'congrats, you won!'
+         result = 'You Won !!'
         }
     else if (RndNumber == 3)
         {
-          result = 'haha, you lost, better luck next time!'
+          result = 'Computer Won !!'
         }
     else
         {
-          result = "yikes, its a tie, try again maybe?"
+          result = "It's Tie"
         }
+  
+hideRPS()
+  
  
-hideRPS();
+ 
 }
 
 function CompScissors()
 {
 
-   if(RndNumber == 2)
+   if(RndNumber == 1)
         {
-         result = 'congrats, you won!'
+         result = 'Computer Won !!'
         }
-    else if (RndNumber == 1)
+    else if (RndNumber == 2)
         {
-          result = 'haha, you lost, better luck next time!'
+          result = 'You Won !!'
         }
     else
         {
-          result = "yikes, its a tie, try again maybe?"
+          result = "It's Tie"
         }
+  hideRPS()
  
-hideRPS();
+ 
 }
 
 function hideRPS()
@@ -151,7 +166,19 @@ function hideRPS()
   btnScissors.hide()
   
   notes =""
-  btnReplay.show()
+  
   btnExit.show()
- 
+  btnReplay.show()
+  
+  
+}
+
+function newGame()
+{
+   RndNumber = round (random(0.5,3.5))
+}
+
+function Exit()
+{
+  hideRPS()
 }
